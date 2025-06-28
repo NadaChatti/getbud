@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getbud/common_widgets/buttons.dart';
 import 'package:getbud/common_widgets/layout.dart';
 
 class AddExpense extends StatefulWidget {
@@ -36,24 +37,24 @@ class _AddExpenseState extends State<AddExpense> {
             _currentStep = step;
           });
         },
-          controlsBuilder: (BuildContext context, ControlsDetails details) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        // "Previous" Button
-        if (_currentStep > 0)
-          ElevatedButton(
-            onPressed: details.onStepCancel,
-            child: const Text('Previous'),
-          ),
-        // "Next" Button
-        ElevatedButton(
-          onPressed: details.onStepContinue,
-          child: const Text('Next'),
-        ),
-      ],
-    );
-  },
+        controlsBuilder: (BuildContext context, ControlsDetails details) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // "Previous" Button
+              if (_currentStep > 0)
+                SubmitButton(
+                  onPressed: details.onStepCancel,
+                  child: const Text('Previous'),
+                ),
+              // "Next" Button
+              SubmitButton(
+                onPressed: details.onStepContinue,
+                child: const Text('Next'),
+              ),
+            ],
+          );
+        },
         steps: [
           // Step 1: Amount
           Step(
@@ -98,8 +99,14 @@ class _AddExpenseState extends State<AddExpense> {
                   ),
                   items: const [
                     DropdownMenuItem(value: 'Food', child: Text('Food')),
-                    DropdownMenuItem(value: 'Transport', child: Text('Transport')),
-                    DropdownMenuItem(value: 'Shopping', child: Text('Shopping')),
+                    DropdownMenuItem(
+                      value: 'Transport',
+                      child: Text('Transport'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Shopping',
+                      child: Text('Shopping'),
+                    ),
                   ],
                   onChanged: (value) {},
                 ),
@@ -110,9 +117,15 @@ class _AddExpenseState extends State<AddExpense> {
                     border: OutlineInputBorder(),
                   ),
                   items: const [
-                    DropdownMenuItem(value: 'Groceries', child: Text('Groceries')),
+                    DropdownMenuItem(
+                      value: 'Groceries',
+                      child: Text('Groceries'),
+                    ),
                     DropdownMenuItem(value: 'Dining', child: Text('Dining')),
-                    DropdownMenuItem(value: 'Clothing', child: Text('Clothing')),
+                    DropdownMenuItem(
+                      value: 'Clothing',
+                      child: Text('Clothing'),
+                    ),
                   ],
                   onChanged: (value) {},
                 ),
